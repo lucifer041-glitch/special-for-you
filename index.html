@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special For You</title>
+    <link rel="stylesheet" href="sorry.css">
+</head>
+<body>
+    <div id="page1" class="page active">
+  <div class="card-container">
+    <!-- replace path with your gif -->
+    <img id="sorryImg" src="img/sorry_img.gif" alt="sorry gif" />
+    <h1 id="sorryText">Sorryy 🥺</h1>
+    <p id="sorryParagraph">
+      I'm truly sorry for my behaviour.<br>
+      I never meant to hurt you.<br>
+      Please accept my apologies.
+    </p>
+
+    <audio id="bgMusic" autoplay loop>
+  <source src="song/right.mp3" type="audio/mpeg">
+</audio>
+
+
+    <div class="buttons">
+      <button id="yesBtn" class="btn-custom">Yes</button>
+      <button id="noBtn" class="btn-custom">No</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: Thank you (hidden) -->
+<div id="thankPage" class="page">
+  <div class="card-container">
+    <img id="sorryImg" src="img/thanks.gif" alt="sorry gif" />
+    <div class="thank-text">
+      <h1>I knew it… you can’t go far from me😎🤣.</h1>
+      <p>Everyone leaves but you? You’re stuck with me 😭😂</p>
+    </div>
+  </div>
+</div>
+
+<script>
+ document.addEventListener('DOMContentLoaded', () => {
+
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const page1 = document.getElementById('page1');
+    const thankPage = document.getElementById('thankPage');
+    const sorryText = document.getElementById('sorryText');
+    const sorryParagraph = document.getElementById('sorryParagraph');
+    const sorryImg = document.querySelector(".card-container img");
+    const bgMusic = document.getElementById("bgMusic");
+
+    document.body.addEventListener("click", () => {
+    bgMusic.play().catch(()=>{});
+}, { once: true });
+
+    function openPage(el) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        el.classList.add('active');
+    }
+
+    // YES → Open thank you page + play thankyou song
+    yesBtn.addEventListener('click', () => {
+        openPage(thankPage);
+        bgMusic.src = "song/tera_yaar_3.mp3";    // <-- ADD your thankyou song path
+        bgMusic.play().catch(()=>{});
+    });
+
+    // ---------- CHANGE THESE ARRAYS ----------
+    const messages = [
+        "Please forgive me 🥺",
+        "Never stay angry at me too long , I don't have anyone else like you, and I never want to lose you",
+        "Still no? I’m really really sorry 😭",
+        // "Come on… please forgive me 💔",
+        "I'm broken up coz I hurt you",
+        "I Just being around you makes everything feel better instantly.",
+        "You are 💎 too me ",
+        "My Doctor said , I am lacking",
+        "Everthing is better with you by my side.",
+        "I value over connection and want to keep it strong.",
+        "I,m turly sorryyy, I hurted you but trust me, I never wanted to hurt you."
+    ];
+
+    const images = [
+        "img/sorry_1.png",
+        "img/sorry_2.gif",
+        "img/sorry_3.gif",
+        "img/heart.gif",
+        "img/happy.gif",
+        "img/gems.webp",
+        "img/vatimin.jpg",
+        "img/side.gif",
+        "img/value1.png",
+        "img/sorry_last.gif"
+    ];
+
+    const songs = [
+        "song/chalo-jaane.mp3",
+        "song/naraz.mp3",
+        "song/tanu_me_maanava.mp3",
+        "song/devar-deewana.mp3",
+        "song/vhalam.mp3",
+        "song/tu_jo_rootha.mp3",
+        "song/teri-aankhon-mein.mp3",
+        "song/tera_yaar_2.mp3",
+        "song/koi-vi-nahi.mp3",
+        "song/maan-meri-jaan.mp3"
+    ];
+    // ------------------------------------------
+
+    let noCount = 0;
+    let noRunning = false;
+
+    // NO BUTTON CLICK
+    noBtn.addEventListener('click', () => {
+        noCount++;
+
+        // Change message
+        const msgIndex = Math.min(noCount - 1, messages.length - 1);
+        const msg = messages[msgIndex];
+        sorryText.innerText = msg;
+
+        // Change paragraph on first click
+        if (noCount === 1) {
+            sorryParagraph.innerText = "";
+        }
+        if (noCount === 2) {
+            sorryParagraph.innerText = "";
+        }
+        if (noCount === 4) {
+          sorryParagraph.innerText = "Please Forgive me 💔";
+        }
+        if (noCount === 5) {
+          sorryParagraph.innerText = "";
+        }
+        if (noCount === 6) {
+            sorryParagraph.innerText = "So i can not lose you. ";
+        }
+        if (noCount === 7) {
+            sorryParagraph.innerText = "If my health get worst, It on you don't tell me then.  ";
+        }
+        if (noCount === 8) {
+            sorryParagraph.innerText = "";
+        }
+        if (noCount === 10) {
+            sorryParagraph.innerText = "I always wanted to care and see you happyyy , I am sorry sorry sorry 🥹";
+        }
+
+        // Change image
+        const imgIndex = Math.min(noCount - 1, images.length - 1);
+        sorryImg.src = images[imgIndex];
+
+        // Image fade animation
+        sorryImg.classList.remove("fade");
+        void sorryImg.offsetWidth;
+        sorryImg.classList.add("fade");
+
+        // CHANGE SONG
+        const songIndex = Math.min(noCount - 1, songs.length - 1);
+        bgMusic.src = songs[songIndex];
+        bgMusic.play().catch(()=>{});
+
+        // Run-away mode on last message
+        if (msg.includes("I,m turly sorryyy, I hurted you but trust me, I never wanted to hurt you.")) {
+            noRunning = true;
+            makeNoBtnEscape();
+        }
+    });
+
+    function makeNoBtnEscape() {
+        const rect = noBtn.getBoundingClientRect();
+        noBtn.style.position = "fixed";
+        noBtn.style.left = rect.left + "px";
+        noBtn.style.top = rect.top + "px";
+        noBtn.style.zIndex = "9999";
+    }
+
+    let lastMove = 0;
+    const MOVE_DELAY = 200;
+
+    function runAway() {
+        if (!noRunning) return;
+
+        const now = Date.now();
+        if (now - lastMove < MOVE_DELAY) return;
+        lastMove = now;
+
+        const btnRect = noBtn.getBoundingClientRect();
+        const padding = 20;
+
+        const maxX = window.innerWidth - btnRect.width - padding;
+        const maxY = window.innerHeight - btnRect.height - padding;
+
+        const randX = padding + Math.random() * maxX;
+        const randY = padding + Math.random() * maxY;
+
+        noBtn.style.left = randX + "px";
+        noBtn.style.top = randY + "px";
+    }
+
+    noBtn.addEventListener("mouseenter", runAway);
+    noBtn.addEventListener("touchstart", e => {
+        if (!noRunning) return;
+        e.preventDefault();
+        runAway();
+    });
+
+});
+</script>
+
+</body>
+</html>

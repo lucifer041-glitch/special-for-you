@@ -1,0 +1,204 @@
+/* ---------- Reset ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: Arial, sans-serif; background: #ffe6f2; }
+
+/* ---------- Pages ---------- */
+.page {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background: transparent;
+  z-index: 500;
+}
+.page {
+    overflow-y: auto;
+}
+
+.page.active { display: flex; }
+
+/* ---------- Card ---------- */
+.card-container {
+  position: relative;
+  width: clamp(280px, 80vw, 440px);
+  /* height: clamp(420px, 70vh, 680px); */
+  height: min(90vh, 680px);
+  
+  background: linear-gradient(to bottom, #ffc0de 50%);
+  border-radius: 28px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+}
+
+/* White curve */
+.card-container::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -18%;
+  transform: translateX(-50%);
+  width: 150%;
+  height: 70%;
+  background: #fff;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Content above curve */
+.card-container img,
+.card-container h1,
+.card-container p,
+.card-container .buttons,
+.thank-text {
+  position: relative;
+  z-index: 5;
+}
+
+.card-container img {
+    width: clamp(140px, 45%, 220px);
+    padding-top: 20vh;
+    height: auto;        /* responsive */
+    max-height: 40vh;    /* prevents overflow */
+    object-fit: contain;
+}
+
+
+.card-container h1 {
+  margin: 35px 0 16px 0;
+  color: #c82f73;
+  font-size: clamp(22px, 6vw, 34px);
+  text-align: center;
+  font-weight: 700;
+}
+
+.card-container p {
+  margin: 0 20px;
+  color: #c82f73;
+  text-align: center;
+  line-height: 1.4;
+  font-size: clamp(14px, 4vw, 18px);
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  justify-content: space-evenly;
+  margin-top: auto;
+  padding: 0 40px clamp(18px, 5vh, 36px);
+      flex-wrap: wrap;
+}
+
+#noBtn {
+  position: relative;
+  transition: left .22s ease, top .22s ease;
+}
+
+/* button styling */
+.btn-custom {
+  --pink: #ffa3cf;
+  --pink-dark: #ec54a0;
+  font-weight: 700;
+  border-radius: 12px;
+  border: 2px solid rgba(255,105,180,0.9);
+  padding: clamp(8px, 2.8vw, 12px) clamp(16px, 5vw, 34px);
+  font-size: clamp(13px, 4vw, 18px);
+  background: var(--pink);
+  color: #000;
+  cursor: pointer;
+  transition: transform .12s ease, background .12s ease;
+     min-width: 110px;
+}
+.btn-custom:hover {
+  transform: translateY(-3px);
+  background: var(--pink-dark);
+  color: #fff;
+}
+
+.thank-text { text-align:center; padding: 20px; }
+
+.letter {
+  margin-top:15px; 
+  font-size:17px; 
+  line-height:1.6;
+}
+
+/* Small Screens */
+@media (max-width: 380px) {
+  .card-container { padding-top: 12px; }
+      .card-container p { font-size: 15px; }
+  .buttons { gap: 12px; padding-bottom: 18px; }
+}
+/* Medium phones (360px–420px) */
+@media (max-width: 420px) {
+
+    /* Card size fix */
+    .card {
+        width: 90%;
+        padding: 25px 20px;
+        padding-top: 30px;   /* move everything a bit down */
+    }
+
+    /* Image position fix */
+    .card img {
+        width: 70%;
+        margin: 0 auto;
+        display: block;
+        margin-top: 35px;    /* ⭐ move image down */
+    }
+
+    /* Heading text */
+    .card h1 {
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    /* Paragraph text */
+    .card p {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    /* Buttons area */
+    .btns {
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    button {
+        padding: 12px 0;
+        font-size: 16px;
+        width: 40%;
+        margin: auto;
+    }
+}
+
+
+/* Small phones (320px–360px) */
+@media (max-width: 360px) {
+    .card-container {
+        width: 90vw;
+        height: auto;
+        padding-bottom: 20px;
+    }
+
+    .card-container img { max-height: 30vh; }
+}
+
+/* Extra small devices (under 300px width) */
+@media (max-width: 300px) {
+    .btn-custom {
+        font-size: 12px;
+        padding: 8px 14px;
+    }
+}
+
