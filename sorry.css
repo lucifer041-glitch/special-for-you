@@ -129,6 +129,11 @@ html, body { height: 100%; font-family: Arial, sans-serif; background: #ffe6f2; 
   font-size:17px; 
   line-height:1.6;
 }
+#surpriseBtn {
+    position: relative !important;
+    z-index: 9999 !important;
+    margin-top: 30px;
+}
 
 /* Small Screens */
 @media (max-width: 380px) {
@@ -199,6 +204,52 @@ html, body { height: 100%; font-family: Arial, sans-serif; background: #ffe6f2; 
     .btn-custom {
         font-size: 12px;
         padding: 8px 14px;
+    }
+}
+
+#surpriseImg {
+    position: relative;
+    bottom: 85px;
+    width: 10vw;
+    height: 40vh;
+    object-fit: cover;
+}
+/* Tablets & medium devices */
+@media (max-width: 900px) {
+    #surpriseImg {
+        width: 20vw !important;
+        bottom: 30px !important;
+        position: relative;
+        top: -79px;
+    }
+}
+
+/* Phones – below 600px */
+@media (max-width: 600px) {
+    #surpriseImg {
+        width: 25vw !important;
+        bottom: 20px !important;
+    }
+}
+@media (max-width: 420px) {
+    #surpriseImg {
+        width: 40vw !important;
+        height: auto !important;
+        bottom: 20px !important;
+        /* object-fit: contain !important; */
+    }
+}
+@media (max-width: 360px) {
+    #surpriseImg {
+        width: 70vw;
+        bottom: 10px;
+    }
+}
+/* Super tiny screens */
+@media (max-width: 300px) {
+    #surpriseImg {
+        width: 85vw !important;
+        bottom: 0px !important;
     }
 }
 

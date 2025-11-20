@@ -38,6 +38,25 @@
       <h1>I knew it… you can’t go far from me😎🤣.</h1>
       <p>Everyone leaves but you? You’re stuck with me 😭😂</p>
     </div>
+
+    <!-- ⭐ SURPRISE BUTTON -->
+    <button id="surpriseBtn" class="btn-custom">
+      Surprise 🎁
+    </button>
+  </div>
+</div>
+
+<!-- PAGE 3: Surprise Page -->
+<div id="surprisePage" class="page">
+  <div class="card-container">
+    <img id="surpriseImg" 
+     src="img/supprise.jpg" 
+     alt="surprise"
+     />
+    <h1 style="margin-top: -54px;">A Letter To My Best Friend ❤️</h1>
+    <p>I truly value our connection.<br><br> You’ve always believed in me, encouraged me, and helped me become a better person. You’ve never let me down and have always been there when I needed you.<br><br>
+      <span style="color:red; font-weight:bold;">Thank you</span> for loving me even with my flaws. I don’t know how I got so lucky to have a friend like you, but I’m really grateful for you.
+    </p>
   </div>
 </div>
 
@@ -52,7 +71,14 @@
     const sorryParagraph = document.getElementById('sorryParagraph');
     const sorryImg = document.querySelector(".card-container img");
     const bgMusic = document.getElementById("bgMusic");
+     const surpriseBtn = document.getElementById("surpriseBtn");
+    const surprisePage = document.getElementById("surprisePage");
 
+surpriseBtn.addEventListener("click", () => {
+    openPage(surprisePage);
+    bgMusic.src = "song/pal-pal-1.mp3";  // ⭐ Add your surprise song
+    bgMusic.play().catch(()=>{});
+});
     document.body.addEventListener("click", () => {
     bgMusic.play().catch(()=>{});
 }, { once: true });
